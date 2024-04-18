@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 10px;
+    width: fit-content;
+}
+
+img {
+    width: 400px;
+}
+
+.container ul {
+    padding: 25px;
+    border: 1px solid black;
+
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: yellow;
+}
+
+.container ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.container ul li p {
+    margin: 0px 0px 0px 20px;
+}

@@ -1,0 +1,33 @@
+body {
+	width: 400px;
+	margin: 5vw auto;
+}
+
+#parent-div {
+	border: 1px solid black;
+	
+	display: flex;
+	width: max-content;
+	height: max-content;
+
+	/* align-items: determina cum se va afisa continutul unei linii */
+	/* align-content: determina cum se vor afisa liniile in container*/
+	padding: 10px 20px;
+}
+
+.child-div {
+	margin: auto;
+	padding: 5px;
+	width: 200px;
+}
+
+.child-div p {
+	text-align: center;
+}
+
+#jake-img {
+	display: block;
+	margin: auto;
+	width: 200px;
+	height: 200px;
+}

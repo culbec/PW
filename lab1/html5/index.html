@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>NutriDOC - acordare formular nutritie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <!-- Tabel ce contine date despre client -->
+                <table>
+                    <tr>
+                        <th colspan="8">
+                            <em>Informa&#355;ii despre client</em>
+                        </th>
+                    </tr>
+                    <!-- Nume + Prenume inputs-->
+                    <tr>
+                        <th colspan="2"><em>Nume</em></th>
+                        <td colspan="2">
+                            <input type="text" id="nume" name="nume" size="30">
+                        </td>
+                        <th colspan="2"><em>Prenume</em></th>
+                        <td colspan="2">
+                            <input type="text" id="prenume" name="prenume" size="20">
+                        </td>
+                    </tr>
+                    <!-- Adresa input-->
+                    <tr>
+                        <th colspan="2"><em>Adres&#259;</em></th>
+                        <td colspan="4">
+                            <input type="text" id="adresa" name="adresa" maxlength="100">
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <!-- Date despre orasul in care se afla clientul-->
+                    <tr>
+                        <th><em>Ora&#351;</em></th>
+                        <td>
+                            <input type="text" id="oras" name="oras">
+                        </td>
+                        <th><em>Jude&#355;</em></th>
+                        <td colspan="2">
+                            <input type="text" id="judet" name="judet">
+                        </td>
+                        <th colspan="2"><em>Cod po&#351;tal</em></th>
+                        <td>
+                            <input type="text" id="cod_postal" name="cod_postal">
+                        </td>
+                    </tr>
+                    <!-- Email si numar de telefon -->
+                    <tr>
+                        <th><em>Telefon</em></th>
+                        <td colspan="3">
+                            <input type="text" id="telefon" name="telefon">
+                        </td>
+                        <th><em>Email</em></th>
+                        <td colspan="3">
+                            <input type="text" id="email" name="email">
+                        </td>
+                    </tr>
+                    <!-- Gen -->
+                    <tr>
+                        <th><em>Gen</em></th>
+                        <td colspan="7">
+                            <input type="radio" id="masculin" name="masculin" value="masculin" checked>
+                            <label for="masculin"><u><strong>Masculin</strong></u></label>
+                            <input type="radio" id="feminin" name="feminin" value="feminin">
+                            <label for="feminin"><u><strong>Feminin</strong></u></label>
+                            <input type="radio" id="neutru" name="neutru" value="neutru">
+                            <label for="neutru"><u><strong>Prefer sa nu spun</strong></u></label>
+                        </td>
+                    </tr>
+                    <!-- Mancare preferata -->
+                    <tr>
+                        <th><em>Mancare preferat&#259;</em></th>
+                        <td colspan="3">
+                            <select name="mancare_preferata" id="mancare_preferata" size="3">
+                                <option value="paste" selected>Paste</option>
+                                <option value="pizza">Pizza</option>
+                                <option value="cereale">Cereale</option>
+                                <option value="mexican">Mexican</option>
+                            </select>
+                        </td>
+                        <th colspan="3"><em>Risc nutri&#355;ional</em></th>
+                        <td title="input_risc">
+                            <input type="text" id="risc_nutritional" name="risc_nutritional">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- Tabel ce contine date despre pachetul nutritional oferit-->
+                <table>
+                    <tr>
+                        <th colspan="4">
+                            <em>Pachet nutri&#355;ional</em>
+                        </th>
+                    </tr>
+                    <!-- Tabel cu pachetul nutritionale -->
+                    <tr>
+                        <th>
+                            Fel de mancare
+                        </th>
+                        <th>
+                            Cantitate
+                        </th>
+                        <th>
+                            Or&#259; consum
+                        </th>
+                        <th>
+                            Tip mas&#259;
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fel_de_mancare1" name="fel_de_mancare1" value="Ovaz cu fructe"
+                                readonly>
+                        </td>
+                        <td>
+                            <input type="text" id="cantitate1" name="cantitate1" value="150gr" readonly>
+                        </td>
+                        <td>
+                            <input type="text" id="ora_consum_1" name="ora_consum_1" value="09:00" readonly>
+                        </td>
+                        <td>
+                            <input type="text" id="tip_masa_1" name="tip_masa_1" value="Mic dejun" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fel_de_mancare2" name="fel_de_mancare2" value="Orez cu legume">
+                        </td>
+                        <td>
+                            <input type="text" id="cantitate2" name="cantitate2" value="250gr">
+                        </td>
+                        <td>
+                            <input type="text" id="ora_consum_2" name="ora_consum_2" value="14:00">
+                        </td>
+                        <td>
+                            <input type="text" id="tip_masa_2" name="tip_masa_2" value="Pranz">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="fel_de_mancare3" name="fel_de_mancare3" value="Salata Caesar">
+                        </td>
+                        <td>
+                            <input type="text" id="cantitate3" name="cantitate3" value="250gr">
+                        </td>
+                        <td>
+                            <input type="text" id="ora_consum_3" name="ora_consuma_3" value="19:00">
+                        </td>
+                        <td>
+                            <input type="text" id="tip_masa_3" name="tip_masa_3" value="Cina">
+                        </td>
+                    </tr>
+                    <!-- Observatii despre pachetul nutritional -->
+                    <tr>
+                        <th colspan="2"><em>Observatii</em></th>
+                        <td colspan="2">
+                            <textarea id="observatii" name="observatii" rows="5"
+                                cols="50">A se respecta cu stricte&#355;e planul descris.</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- Partea de submit/reset a formularului -->
+                <table>
+                    <tr>
+                        <td>
+                            <form action="#" target="_blank" method="get">
+                                <input type="submit" value="Submit">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="#" target="index.html" method="post">
+                                <input type="reset" value="Reset">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <h1>Informa&#355;ii importante</h1>
+
+    <fieldset>
+        <legend><strong>Indica&#355;ii</strong></legend>
+        <ol start="2" type="1">
+            <li>
+                <h3>Semnifica&#355;ia meselor</h3>
+                <ul>
+                    <li>Mesele sunt concepute pentru o <strong>singur&#259; persoan&#259;</strong>.</li>
+                    <li>Valorile nutri&#355;ionale sunt calculate astfel &icirc;nc&acirc;t s&#259; ofere
+                        sa&#355;ietate pentru o zi.</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Reguli</h3>
+                <ol type="i">
+                    <li>Programul nutri&#355;onal trebuie <strong>respectat cu stricte&#355;e</strong>.</li>
+                    <li>Nutri&#355;ia este <strong>cheia</strong>, sportul reprezint&#259; balansul.</li>
+                    <li>Folosi&#355; <strong>alimente s&#259;n&#259;toase &#351;i benefice</strong> &icirc;n dieta dvs.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <h3>Resurse</h3>
+                <ol type="a">
+                    <li>Calculator pentru <em><a
+                                href="https://www.medicover.ro/calculator-imc-indice-de-masa-corporala/">IMC</a></em>.
+                    </li>
+                    <li>Calculator pentru <em><a
+                                href="https://www.calculator.net/calorie-calculator.html">kcal</a></em>.</li>
+                </ol>
+            </li>
+        </ol>
+
+        <fieldset title="exemplu_mese">
+            <legend><strong>Exemplu de mese</strong></legend>
+            <table>
+                <tr>
+                    <td><img src="https://www.bucataras.ro/uploads/modules/news/31809/orez-cu-legume-mexicane-156820.jpg"
+                            alt="orez_cu_legume" width="300" height="300"></td>
+                    <td><img src="https://www.flaviahiriscau.ro/wp-content/uploads/2021/09/90ABAE69-4607-48F1-B72B-993EA531393E-scaled.jpeg"
+                            alt="ovaz_cu_fructe" width="300" height="300"></td>
+                    <td><img src="https://www.profi.ro/wp-content/uploads/2023/07/Pastrav-la-cuptor.jpg"
+                            alt="peste_la_cuptor" width="300" height="300"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </fieldset>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    list-style-type: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.alice  {
+    width: 30%;
+    position: relative;
+    background-color: pink;
+    border-radius: .7em;
+
+    margin-left: 20%;
+}
+
+.bob {
+    width: 30%;
+    position: relative;
+    background-color: lightblue;
+    border-radius: .7em;
+
+    margin-left: 20%;
+}
+
+.alice:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-image: url("./kids.png");
+    background-position: 70px 0px;
+    background-size: 130px 50px;
+
+    display: block;
+    width: 70px;
+    height: 50px;
+    
+    content: "";
+    
+    margin-left: -10.5vw;
+    margin-right: 20px;
+}
+
+.alice:after {
+    position: absolute;
+    left: 0;
+    top:60%;
+
+    content: "";
+
+    border: 9px solid transparent;
+    border-right-color: pink;
+    border-left: 0;
+    border-top: 0;
+    margin-top: -5px;
+    margin-left: -9px;
+}
+
+.bob::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-image: url("./kids.png");
+    background-position: 0px 0px;
+    background-size: 130px 50px;
+
+    display: inline-block;
+    width: 65px;
+    height: 50px;
+
+    content: "";
+
+    margin-left: -10.5vw;
+    margin-right: 20px;
+}
+
+.bob::after {
+    position: absolute;
+    left: 0;
+    top: 60%;
+
+    content: "";
+
+    border: 9px solid transparent;
+    border-right-color: lightblue;
+    border-left: 0;
+    border-top: 0;
+    margin-top: -5px;
+    margin-left: -9px;
+}
