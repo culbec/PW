@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table sort</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div id="container">
+        <h2>Tables</h2>
+        <div id="table-container">
+            <table class="header-row-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTableOnRows(0)">Fruct</th>
+                        <th onclick="sortTableOnRows(1)">Preț (RON)</th>
+                        <th onclick="sortTableOnRows(2)">Cantitate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mere</td>
+                        <td>5.50</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Banane</td>
+                        <td>3.00</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>Portocale</td>
+                        <td>4.20</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="header-column-table">     
+                <tbody>
+                    <tr>
+                        <th onclick="sortTableOnColumns(0)">Fruct</th>
+                        <td>Mere</td>
+                        <td>5.50</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th onclick="sortTableOnColumns(1)">Preț (RON)</th>
+                        <td>Banane</td>
+                        <td>3.00</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <th onclick="sortTableOnColumns(2)">Cantitate</th>
+                        <td>Portocale</td>
+                        <td>4.20</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

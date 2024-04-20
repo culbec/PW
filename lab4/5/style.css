@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    margin: 25px;
+}
+
+#container h2 {
+    padding: 1em;
+}
+
+#carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#carousel li img {
+    width: 600px;
+    height: 400px;
+    border: 1px solid black;
+    box-shadow: 0px 10px 20px black;
+    opacity: 0.5;
+}
+
+#carousel li a {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 400px;
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+}
+
+#carousel a:hover {
+    text-shadow: 0px 0px 30px white;
+    text-decoration-color: white;
+    color: aqua;
+}
+
+#carousel ol {
+    list-style-type: none;
+}
+
+#carousel ol li {
+    display: none;
+    background-color: black;
+}
+
+#carousel ol li.visible {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#carousel-nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#carousel-nav button {
+    width: 100px;
+    height: 50px;
+    margin: 20px;
+    font-size: 16px;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: -5px 5px 10px black;
+}
+
+#carousel-nav button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
