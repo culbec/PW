@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Form</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="form-container">
+            <h2 id="form-header">INFO Form</h2>
+            <form method="post">
+                <label for="first-name-input">Enter your first name:</label>
+                <input id="first-name-input" type="text" name="first-name" required maxlength="30" />
+                <label for="last-name-input">Enter your last name:</label>
+                <input id="last-name-input" type="text" name="last-name" required maxlength="30" />
+                <label for="birth-date-input">Enter your birth date:</label>
+                <input id="birth-date-input" type="date" name="birth-date" required />
+                <label for="age-input">Enter your age:</label>
+                <input id="age-input" type="number" name="age" required />
+                <label for="email-input">Enter your email:</label>
+                <input id="email-input" type="email" name="email" required />
+            </form>
+            <button id="submit-button">Submit</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

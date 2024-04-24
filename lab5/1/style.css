@@ -1,0 +1,63 @@
+body {
+    width: 100vh;
+    height: 100vh;
+}
+
+#shop-basket {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#shop-basket div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+#shop-basket label {
+    margin: 20px 20px;
+    padding: 20px 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+#shop-basket div select {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+#shop-basket div select option {
+    margin: 5px;
+    font-size: 14px;
+}
+
+#shop-basket #shop {
+    background: darkviolet;
+    box-shadow: -15px 12px 10px black;
+}
+
+#shop-basket label {
+    background: white;
+    border: 1px solid black;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#shop-basket #basket {
+    background: yellowgreen;
+    box-shadow: 15px 12px 10px black;
+}

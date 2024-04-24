@@ -1,0 +1,55 @@
+body{
+    position: relative;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: auto;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 25px;
+    align-items: center;
+}
+
+#size-input-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px 50px;
+    align-items: center;
+}
+
+#size-input-container label {
+    margin: 10px;
+    font-size: 20px;
+}
+
+#size-input-container select {
+    width: 150px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+#table-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#table-container table {
+    justify-content: center;
+    border: 1px solid black;
+}
+
+#table-container table td {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid black;
+}

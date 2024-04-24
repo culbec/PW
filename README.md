@@ -5,6 +5,9 @@ This repository contains my work on the **_Web Programming_** course.
 
 ## Roadmap
 
+### Laboratory 6 - _jQuery_
+- Used and learnt `jQuery` to solve the `JavaScript` problems in a concise manner.
+
 ### Laboratory 4 - _JavaScript_
 - Used and learnt plain `JavaScript` to solve a series of simple problems.
 
