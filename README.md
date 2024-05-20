@@ -5,7 +5,10 @@ This repository contains my work on the **_Web Programming_** course.
 
 ## Roadmap
 
-### Laboratory 6 - _jQuery_
+### Laboratory 6 - _Ajax_
+- Used plain along with jQuery syntax `Ajax` with a call to a server implemented in `Go` to solve some problems.  
+
+### Laboratory 5 - _jQuery_
 - Used and learnt `jQuery` to solve the `JavaScript` problems in a concise manner.
 
 ### Laboratory 4 - _JavaScript_
