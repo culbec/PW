@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 6</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<script>
+    let oldCriteria = "";
+
+    function loadUniqueValues(val) {
+        return $.ajax({
+            url: 'http://localhost:8080/lab6_6/shop/unique-values',
+            method: 'GET',
+            data: {
+                'attribute-index': val
+            },
+            success: function (data) {
+                // Parse JSON if it's a string
+                if (typeof data === 'string') {
+                    data = JSON.parse(data);
+                }
+
+                // Clear the value select
+                $('#value-select').empty();
+
+                // Populate the value select with the unique values
+                $.each(data, function (index, value) {
+                    $('#value-select').append($('<option>', {
+                        value: index,
+                        text: value
+                    }));
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error: ' + textStatus, errorThrown);
+            }
+        });
+    }
+
+    function loadInitial() {
+        $.ajax({
+            url: 'http://localhost:8080/lab6_6/shop/initial-load',
+            method: 'GET',
+            success: function (data) {
+                // Parse JSON if it's a string
+                if (typeof data === 'string') {
+                    data = JSON.parse(data);
+                }
+                // Clear the products table, but keep the header
+                $('#product-table tr:not(:first)').remove();
+
+                // Append the filtered products to the table
+                $.each(data, function (index, product) {
+                    $('#product-table').append($('<tr>').append(
+                        $('<td>').text(product.type),
+                        $('<td>').text(product.producer),
+                        $('<td>').text(product.color),
+                        $('<td>').text(product.seasons),
+                        $('<td>').text(product.price)
+                    ));
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error: ' + textStatus, errorThrown);
+            }
+        });
+    }
+
+    function loadFilteredProducts(filterCriteria, filterValue) {
+        if (filterCriteria == "" || filterValue === "") {
+            alert("Please select both a filter criteria and a value.");
+            return;
+        }
+
+        $.ajax({
+            url: 'http://localhost:8080/lab6_6/shop',
+            method: 'GET',
+            data: {
+                'filter-criteria': filterCriteria,
+                'filter-value': filterValue
+            },
+            success: function (data) {
+                // Parse JSON if it's a string
+                if (typeof data === 'string') {
+                    data = JSON.parse(data);
+                }
+                // Clear the products table, but keep the header
+                $('#product-table tr:not(:first)').remove();
+
+                // Append the filtered products to the table
+                $.each(data, function (index, product) {
+                    $('#product-table').append($('<tr>').append(
+                        $('<td>').text(product.type),
+                        $('<td>').text(product.producer),
+                        $('<td>').text(product.color),
+                        $('<td>').text(product.seasons),
+                        $('<td>').text(product.price)
+                    ));
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error: ' + textStatus, errorThrown);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        loadUniqueValues(0);
+        loadInitial();
+
+        $('#property-select, #value-select').change(async function () {
+            let filterCriteria = $('#property-select option:selected').text();
+            if (oldCriteria != filterCriteria) {
+                await loadUniqueValues($('#property-select').val());
+                oldCriteria = filterCriteria;
+            }
+            
+            let filterValue = $('#value-select option:selected').text();
+            loadFilteredProducts(filterCriteria, filterValue);
+        });
+    });
+</script>
+
+<body>
+    <div id="product-container">
+        <div id="filter-container">
+            <select id="property-select">
+                <option value="0">Type</option>
+                <option value="1">Producer</option>
+                <option value="2">Color</option>
+                <option value="3">Season</option>
+            </select>
+            <select id="value-select"></select>
+        </div>
+
+        <table id="product-table">
+            <tr>
+                <th>Type</th>
+                <th>Producer</th>
+                <th>Color</th>
+                <th>Season</th>
+                <th>Price</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

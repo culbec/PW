@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Problem 1</title>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./style.css"/>
+
+    </head>
+
+    <script>
+        $(document).ready(() => {
+            // Loading the departure cities.
+            $.ajax({
+                url: 'http://localhost:8080/lab6_1/departure-cities',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var departureSelect = $('select[name=departure-city-select]');
+                    
+                    $.each(data, function(key, val) {
+                        departureSelect.append($('<option></option>').attr('value', val).text(val));
+                    });
+                },
+                error: function(err) {
+                    console.log('Error: ', err);
+                }
+            });
+
+            // Loading the arrival cities for a given city when the a new option
+            // in the departure city select is selected.
+            $('select[name="departure-city-select"]').change(function() {
+                let departureCity = $(this).val();
+                
+                $.ajax({
+                    url: 'http://localhost:8080/lab6_1/arrival-cities?departure-city=' + encodeURIComponent(departureCity),
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clearing the arrival city select.
+                        let arrivalSelect = $('select[name="arrival-city-select"]');
+                        arrivalSelect.empty();
+
+                        arrivalSelect.append($("<option></option>").attr("value", "No Selection").text("No Selection"));
+                        $.each(data, (key, val) => {
+                            arrivalSelect.append($("<option></option>").attr("value", val).text(val));
+                        });
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <body>
+        <div id="station-container">
+            <div id="departure-station-container">
+                <select name="departure-city-select">
+                    <option value="No Selection">No selection</option>
+                </select>
+            </div>
+            <div id="arrival-station-container">
+                <select name="arrival-city-select">
+                    <option value="No Selection">No Selection</option>
+                </select>
+            </div>
+        </div>
+    </body>
+
+</html>

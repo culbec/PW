@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 5</title>
+</head>
+
+<style>
+    #tree-view-container li {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    let currentPath = "";
+    let previousPath = "";
+
+    function loadPath(path) {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const container = document.getElementById('tree-view-container');
+                container.innerHTML = '';
+
+                try {
+                    // Try to parse the response as JSON
+                    const entries = JSON.parse(this.responseText);
+
+                    const entryList = document.createElement('ul');
+                    container.appendChild(entryList);
+
+                    const back = document.createElement('li');
+                    back.innerHTML = "../";
+                    back.onclick = function () {
+                        // Don't go back if we're already at the root directory
+                        if (currentPath === "") {
+                            return;
+                        }
+
+                        // Update previousPath and currentPath
+                        const pathParts = currentPath.split('/');
+                        previousPath = currentPath;
+                        currentPath = pathParts.slice(0, -1).join('/');
+                        loadPath(currentPath);
+                    }
+                    entryList.appendChild(back);
+
+                    entries.forEach(entry => {
+                        const item = document.createElement('li');
+                        item.innerHTML = entry.name;
+                        item.onclick = function () {
+                            if (entry.isDir) {
+                                // Update previousPath and currentPath
+                                previousPath = currentPath;
+                                currentPath += '/' + entry.name;
+                                loadPath(currentPath);
+                            } else {
+                                loadFile(currentPath + '/' + entry.name);
+                            }
+                        };
+                        entryList.appendChild(item);
+                    });
+                } catch (error) {
+                    // If it fails, use the response text directly
+                    const pre = document.createElement('pre');
+                    pre.textContent = this.responseText;
+                    container.appendChild(pre);
+                }
+            }
+        };
+
+        xhttp.open("GET", "http://localhost:8080/lab6_5/tree-view?path=" + encodeURIComponent(path), true);
+        xhttp.send();
+    }
+
+    function loadFile(path) {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const container = document.getElementById('tree-view-container');
+                container.innerHTML = '';
+
+                const pre = document.createElement('pre');
+                pre.textContent = this.responseText;
+                container.appendChild(pre);
+
+                const back = document.createElement('button');
+                back.textContent = 'Back';
+                back.onclick = function () {
+                    loadPath(currentPath); // Go back to the current directory, not the previous one
+                }
+                container.appendChild(back);
+            }
+        };
+
+        xhttp.open("GET", "http://localhost:8080/lab6_5/tree-view?path=" + encodeURIComponent(path), true);
+        xhttp.send();
+    }
+
+    window.onload = function () {
+        currentPath = "./html/lab6_5";
+        const pathParts = currentPath.split('/');
+        previousPath = pathParts.slice(0, -1).join('/');
+        loadPath(currentPath);
+    }
+</script>
+
+<body>
+    <div id="tree-view-container">
+
+    </div>
+</body>
+
+</html>

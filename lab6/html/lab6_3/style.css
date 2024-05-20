@@ -1,0 +1,87 @@
+body {
+    position: relative;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#book-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    padding: 5% 0;
+    margin: 10% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    background-color: lime;
+    width: 500px;
+    height: 300px;
+}
+
+#book-container #select-container {
+    min-width: 200px;
+}
+
+#book-container #select-container > * {
+    margin: 0 0.7em;
+}
+
+#book-container #select-container label {
+    font-size: 20px;
+}
+
+#book-container #select-container select {
+    min-width: 150px;
+    min-height: 30px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: white;
+}
+
+#book-container #form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#book-container #form-container form{
+    margin: 2em;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+
+#book-container #form-container input {
+    margin: 10px 0;
+    min-width: 200px;
+    min-height: 30px;
+    font-style: italic;
+    font-size: 15px;
+    padding: 0px 10px;
+}
+
+#book-container #form-container label {
+    margin: 0px 10px;
+    font-size: 18px;
+}
+
+#book-container #form-container button {
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#book-container #form-container button:disabled {
+    background-color: lightgrey;
+}
+
+#book-container #form-container button:hover {
+    background-color: lightgrey;
+}
+

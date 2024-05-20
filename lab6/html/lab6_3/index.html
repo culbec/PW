@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 3</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<script>
+    let isFormModified = false;
+
+    function saveBook() {
+        const book = {
+            id: parseInt($("#id-select").val()),
+            title: $("#title-input").val(),
+            author: $("#author-input").val(),
+            editorial: $("#editorial-input").val()
+        };
+
+        $.ajax({
+            url: "http://localhost:8080/lab6_3/books",
+            type: "POST",
+            data: JSON.stringify(book),
+            contentType: "application/json",
+            success: function (data) {
+                alert("OK!");
+                isFormModified = false;
+                $("#save-button").attr("disabled", "disabled");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function loadIds() {
+        $.ajax({
+            url: "http://localhost:8080/lab6_3/books/id",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                data.sort((a, b) => a - b);
+
+                $("#id-select").empty();
+
+                $.each(data, (key, val) => {
+                    $("#id-select").append($("<option></option>").attr("value", val).text(val));
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function getBookById() {
+        if (isFormModified) {
+            const shouldChange = confirm("Do you want to save the changes?");
+            if (shouldChange) {
+                saveBook();
+            }
+            isFormModified = false;
+        }
+
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const response = JSON.parse(this.responseText);
+
+                if (response.id) {
+                    const bookForm = document.getElementById("book-form");
+
+                    bookForm.elements["title-input"].value = response.title;
+                    bookForm.elements["author-input"].value = response.author;
+                    bookForm.elements["editorial-input"].value = response.editorial;
+                } else {
+                    bookForm.elements["title-input"].value = "";
+                    bookForm.elements["author-input"].value = "";
+                    bookForm.elements["editorial-input"].value = "";
+                }
+
+                document.getElementById("save-button").disabled = true;
+            }
+        }
+
+        xhttp.open("GET", "http://localhost:8080/lab6_3/books/id/" + document.getElementById("id-select").value, true);
+        xhttp.send();
+    }
+
+    $(document).ready(() => {
+        const bookForm = document.getElementById("book-form");
+        const inputs = bookForm.getElementsByTagName("input");
+
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('change', function () {
+                isFormModified = true;
+                $("#save-button").removeAttr("disabled");
+            });
+        }
+
+        loadIds();
+
+        $("#id-select").change(getBookById);
+        $("#save-button").click(saveBook);
+    });
+</script>
+
+<body>
+    <div id="book-container">
+        <div id="select-container">
+            <label for="id-select">Book ID:</label>
+            <select id="id-select"></select>
+        </div>
+        <div id="form-container">
+            <form id="book-form">
+                <label for="title-input">Title:</label>
+                <input id="title-input" />
+                <label for="author-input">Author:</label>
+                <input id="author-input" />
+                <label for="editorial-input">Editorial:</label>
+                <input id="editorial-input" />
+            </form>
+            <button id="save-button" disabled>Save</button>
+        </div>
+    </div>
+</body>
+
+</html>

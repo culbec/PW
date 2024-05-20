@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 2</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css" />
+
+</head>
+
+<script>
+    let currentPageIndex = 1;
+    const PAGE_SIZE = 3;
+
+    function loadPage(pageIndex) {
+        $.ajax({
+            url: 'http://localhost:8080/lab6_2/persons/' + pageIndex,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.length == 0) {
+                    $("#next-button").attr("disabled", "disabled");
+                    return;
+                }
+
+                $('table#person-table > tbody > tr:not(:first-child)').remove();
+
+                $.each(data, function (key, val) {
+                    $('table#person-table > tbody').append('<tr><td>' + val.firstName + '</td><td>' + val.lastName + '</td><td>' + val.phone + '</td><td>' + val.email + '</td></tr>');
+                });
+
+                // Enable or disable the "Previous" button
+                if (pageIndex > 1) {
+                    $("#previous-button").removeAttr("disabled");
+                } else {
+                    $("#previous-button").attr("disabled", "disabled");
+                }
+
+                // Assume that if a full page of data is returned, there is a next page
+                if (data.length == PAGE_SIZE) {
+                    $("#next-button").removeAttr("disabled");
+                } else {
+                    $("#next-button").attr("disabled", "disabled");
+                }
+            },
+            error: function (err) {
+                console.log('Error: ', err);
+            }
+        });
+    }
+
+    $(document).ready(() => {
+        loadPage(currentPageIndex);
+
+        $("#next-button").click(() =>{
+        loadPage(++currentPageIndex);
+        });
+        $("#previous-button").click(() => {
+            loadPage(--currentPageIndex);
+        });
+    })
+</script>
+
+<body>
+    <div id="table-container">
+        <table id="person-table">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </table>
+        <div id="commands-container">
+            <button id="previous-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+    </div>
+</body>
+
+</html>

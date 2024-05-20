@@ -177,7 +177,7 @@ function handle_image_table(table_size) {
     table_handler(image_table, table_size);
 }
 
-$(select_input).click(() => {
+$("#size-input").click(() => {
     handle_number_table($("#size-input").val());
-    //handle_image_table($("#size-input").val());
+    handle_image_table($("#size-input").val());
 });

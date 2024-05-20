@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 4</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<script>
+    let isPlayerMove = true;
+    let remainingMoves = 9;
+    const threshold = 0.66; // above this probability, the computer starts
+
+    async function checkStatus() {
+        return $.ajax({
+            url: "http://localhost:8080/lab6_4/xo/check-status",
+            type: "GET",
+            success: function (response) {
+                if (response.game_over) {
+                    remainingMoves = -1;
+
+                    if (response.score == 10) {
+                        $("#status-label").text("Player won!");
+                    } else if (response.score == -10) {
+                        $("#status-label").text("Opponent won!");
+                    } else {
+                        $("#status-label").text("Game over!");
+                    }
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function playerMove(row, col) {
+        $.ajax({
+            url: "http://localhost:8080/lab6_4/xo/player",
+            type: "POST",
+            data: JSON.stringify({ row: parseInt(row), col: parseInt(col) }),
+            contentType: "application/json",
+            success: function (arr) {
+                // Update the board with the player's move
+                $(`#cell-${row}-${col}`).text('X');
+                isPlayerMove = false;
+                remainingMoves--;
+
+                checkStatus().then(response => {
+                    if (response.game_over) {
+                        remainingMoves = -1;
+                        console.log(remainingMoves);
+                        return;
+                    }
+
+                    if (remainingMoves > 0) {
+                        opponentMove();
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+            error: function (err) {
+                console.log(err);
+                alert("BAD MOVE!")
+            }
+        });
+    }
+
+    async function opponentMove() {
+    $.ajax({
+        url: "http://localhost:8080/lab6_4/xo/computer",
+        type: "GET",
+        success: function (arr) {
+            // Update the board with the opponent's move
+            $(`#cell-${arr.row}-${arr.col}`).text('O');
+            isPlayerMove = true;
+            remainingMoves--;
+
+            checkStatus().then(response => {
+                if (response.game_over) {
+                    remainingMoves = -1;
+                    console.log(remainingMoves);
+                    return;
+                }
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+        error: function (err) {
+            console.log(err);
+            alert("BAD MOVE!")
+        }
+    });
+}
+
+    function resetGame() {
+        $.ajax({
+            url: "http://localhost:8080/lab6_4/xo/reset",
+            type: "GET",
+            success: function (data) {
+                isPlayerMove = true;
+                remainingMoves = 9;
+                $("#status-label").text("");
+                clearBoard();
+                startGame();
+            },
+            error: function (err) {
+                console.log(err);
+                
+            }
+        });
+    }
+
+    function clearBoard() {
+        $("td").each((i, td) => {
+            $(td).text("");
+        });
+    }
+
+    function startGame() {
+        const p = Math.random();
+
+        if (p > threshold) {
+            // The computer starts.
+            opponentMove()
+        }
+    }
+
+    $(document).ready(() => {
+        $("#reset-button").click(() => resetGame());
+        // Add click event listeners to the cells
+        $("td").click(function () {
+            if (isPlayerMove && remainingMoves > 0) {
+                const id = $(this).attr('id');
+                const [_, row, col] = id.split('-');
+                playerMove(row, col);
+            } else if (!isPlayerMove) {
+                alert("Not the players turn!");
+            } else if (!(remainingMoves > 0)) {
+                alert("GAME OVER!");
+            }
+        });
+        resetGame();
+    });
+</script>
+
+<body>
+    <div id="xo-container">
+        <table id="xo-board">
+            <tr>
+                <td id="cell-0-0"></td>
+                <td id="cell-0-1"></td>
+                <td id="cell-0-2"></td>
+            </tr>
+            <tr>
+                <td id="cell-1-0"></td>
+                <td id="cell-1-1"></td>
+                <td id="cell-1-2"></td>
+            </tr>
+            <tr>
+                <td id="cell-2-0"></td>
+                <td id="cell-2-1"></td>
+                <td id="cell-2-2"></td>
+            </tr>
+        </table>
+        <label for="xo-board" id="status-label"></label>
+        <button id="reset-button">Reset</button>
+    </div>
+</body>
+
+</html>
