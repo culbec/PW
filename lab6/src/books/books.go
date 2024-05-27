@@ -10,6 +10,8 @@ import (
 	"strconv"
 )
 
+const FILE_PATH string = "./data/books.csv"
+
 type Book struct {
 	Id        int    `json:"id"`
 	Title     string `json:"title"`
@@ -96,7 +98,7 @@ func GetIdsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if books == nil {
-		books = readBooks("../data/books.csv")
+		books = readBooks(FILE_PATH)
 	}
 
 	ids := retrieveIds(books)
@@ -117,7 +119,7 @@ func GetBookByIdHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if books == nil {
-		books = readBooks("../data/books.csv")
+		books = readBooks(FILE_PATH)
 	}
 
 	idStr := path.Base(r.URL.Path)

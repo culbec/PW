@@ -9,6 +9,8 @@ import (
 	"sort"
 )
 
+const FILE_PATH string = "./data/cities.csv"
+
 var routes map[string][]string = nil
 
 func getRoutes(fileName string) map[string][]string {
@@ -80,7 +82,7 @@ func getArrivals(departureCity string, routes map[string][]string) []string {
 func GetDepartureCitiesHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		if routes == nil {
-			routes = getRoutes("../data/cities.csv")
+			routes = getRoutes(FILE_PATH)
 		}
 
 		departureCities := getDepartues(routes)

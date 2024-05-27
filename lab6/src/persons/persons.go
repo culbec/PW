@@ -10,6 +10,8 @@ import (
 	"strconv"
 )
 
+const FILE_PATH string = "./data/persons.csv"
+
 type Person struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
@@ -93,7 +95,7 @@ func getPreviousPage(persons []Person, length, pageIndex int) []Person {
 func GetPageHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		if persons == nil {
-			persons, length = getPersons("../data/persons.csv")
+			persons, length = getPersons(FILE_PATH)
 		}
 
 		// Setting the returned content type.

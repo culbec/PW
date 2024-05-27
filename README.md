@@ -5,6 +5,9 @@ This repository contains my work on the **_Web Programming_** course.
 
 ## Roadmap
 
+### Laboratory 7 - _PHP_
+- Server-side `PHP` to implement some web apps.  
+
 ### Laboratory 6 - _Ajax_
 - Used plain along with jQuery syntax `Ajax` with a call to a server implemented in `Go` to solve some problems.  
 

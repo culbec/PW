@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFR Calatori</title>
+
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Selectati ruta</legend>
+        <form id="route-form" method="GET" action="./find_route.php">
+            <span>
+                <label for="departure-input">Localitate plecare</label>
+                <input name="departure-input" type="text" id="departure-input" required value="Cluj-Napoca"/>
+                <p id="departure_err"></p>
+            </span>
+            <span>
+                <label for="arrival-input">Localitate sosire</label>
+                <input name="arrival-input" type="text" id="arrival-input" required value="Iasi"/>
+                <p id="arrival-err"></p>
+            </span>
+            <div id="direct-route-option">
+                <label for="direct-route-check" style="text-decoration: underline;">Ruta directa</label>
+                <input type="checkbox" name="direct-route" id="direct-route-check" checked/>
+            </div>
+            <button>Submit</buton>
+        </form>
+    </fieldset>
+</body>
+
+</html>

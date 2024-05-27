@@ -1,0 +1,99 @@
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding:10px;
+}
+
+table th {
+    background-color: lightgray;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lime;
+    border: 1px solid black;
+    padding: 20px;
+    min-width: 500px;
+    min-height: 300px;
+}
+
+.container h1 {
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    min-width: 80%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container form label {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.container form > * {
+    margin: 20px;
+}
+
+.container form input, .container form button, .container form textarea {
+    padding: 10px;
+}
+
+.container form button {
+    min-width: 100px;
+}
+
+.top-nav {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60%;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid black;
+}
+
+.top-nav .nav {
+    background-color: lightblue;
+    min-width: 50%;
+    padding: 20px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.top-nav .nav a {
+    font-size: 18px;
+}
+
+img {
+    display: block;
+    width: 800px;
+    height: 500px;
+}
+
+.container form textarea {
+    min-width: 500px;
+    min-height: 200px;
+}

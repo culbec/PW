@@ -59,7 +59,6 @@ func LoadPathHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		currentPath = path
 	}
-	fmt.Println(path, basePath, currentPath)
 
 	// Check if the current path is inside the base path
 	relPath, err := filepath.Rel(basePath, currentPath)

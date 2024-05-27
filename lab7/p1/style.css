@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#route-form {
+    padding: 25px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+#route-form input {
+    margin: 10px 0;
+    width: 150px;
+}
+
+.train-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.train-table table td, th {
+    border: 1px solid black;
+}
+
+.train-table table th {
+    background-color: lightgray;
+}
+
+.train-table table td {
+    background-color: white;
+}
